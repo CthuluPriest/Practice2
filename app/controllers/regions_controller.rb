@@ -96,6 +96,7 @@ class RegionsController < ApplicationController
     @region_id = params[:region_id].to_i
     @region = Region.find{|a| a.id == @region_id}
     @computers = Computer.all
+    @regions = Region.all
     @districts = District.all
     @allstations = Station.all
     @comp_count = Array.new(6) 
@@ -120,7 +121,6 @@ class RegionsController < ApplicationController
       @comp_count[4] += @computers.find_all{|a|a.district_id == district.id}.find_all{|a| a.comp_class == "5" }.count
       @comp_count[5] += @computers.find_all{|a|a.district_id == district.id}.find_all{|a| a.comp_class == "6" }.count
 
-      @comp_count[1]+=district.id
       @stations+=@allstations.find_all{|a|a.district_id == district.id}
       
 
